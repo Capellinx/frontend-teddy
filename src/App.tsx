@@ -1,7 +1,5 @@
-export default function App() {
-  return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+import {RoutesMain} from './routes/routes-main.tsx';
+
+export function App() {
+  return <RoutesMain/>
 }
