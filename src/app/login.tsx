@@ -1,4 +1,4 @@
-export function HomePage() {
+export function LoginPage() {
   return (
     <main className="w-full flex flex-col items-center justify-center h-screen">
       <div className="w-1/5 flex flex-col items-center justify-center gap-6 ">
