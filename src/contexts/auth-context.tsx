@@ -1,50 +1,55 @@
-import {createContext, ReactNode, useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import { createContext, ReactNode, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface AuthContextProps {
-  user: string
-  setUser: (user: string) => void
-  saveInformationToLocalStorage: (name: string) => void
-  handleUserLogout: () => void
+  user: string;
+  setUser: (user: string) => void;
+  saveInformationToLocalStorage: (name: string) => void;
+  handleUserLogout: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextProps);
 
-export function AuthProvider({children}: {children: ReactNode}) {
-  const [user, setUser] = useState("")
-  
-  const navigate =useNavigate()
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [user, setUser] = useState<string>("");
+  const navigate = useNavigate();
   
   function saveInformationToLocalStorage(name: string) {
-    localStorage.setItem("user", JSON.stringify(name))
+    localStorage.setItem("user", JSON.stringify(name));
+    setUser(name);
     
-    setUser(name)
-    
-    navigate("/home")
+    navigate("/home");
   }
   
   function handleUserLogout() {
-    localStorage.removeItem("user")
-    setUser("")
+    localStorage.removeItem("user");
+    setUser("");
+    
+    navigate("/");
   }
   
   useEffect(() => {
-    const informationStoredUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("user");
     
-    if (informationStoredUser && !user) {
-      setUser(JSON.parse(informationStoredUser));
-      navigate("/home", { replace: true });
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      
+      if (window.location.pathname === "/home") {
+        navigate("/home", { replace: true });
+      }
     }
-  }, [user, navigate]);
+  }, [navigate]);
   
   return (
-    <AuthContext.Provider value={{
-      user,
-      setUser,
-      saveInformationToLocalStorage,
-      handleUserLogout
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        saveInformationToLocalStorage,
+        handleUserLogout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
