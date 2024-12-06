@@ -10,7 +10,7 @@ interface AuthContextProps {
 
 export const AuthContext = createContext({} as AuthContextProps);
 
-export function AuthContext({children}: {children: ReactNode}) {
+export function AuthProvider({children}: {children: ReactNode}) {
   const [user, setUser] = useState("")
   
   const navigate =useNavigate()
