@@ -1,4 +1,10 @@
+import {useNavigate} from 'react-router-dom';
+
+
 export function LoginPage() {
+  
+  const navigate = useNavigate();
+  
   return (
     <main className="w-full flex flex-col items-center justify-center h-screen">
       <div className="w-1/5 flex flex-col items-center justify-center gap-6 ">
@@ -10,6 +16,7 @@ export function LoginPage() {
         />
         <button
           className="w-full p-2 rounded-sm text-white bg-orange-500 focus:outline-black hover:bg-orange-700"
+          onClick={() => navigate('/home')}
         >
           Entrar
         </button>
