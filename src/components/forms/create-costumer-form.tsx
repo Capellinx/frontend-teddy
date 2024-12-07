@@ -1,9 +1,13 @@
-import {ChangeEvent, FormEvent, useState} from 'react';
+import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useState} from 'react';
 import {Costumer} from '../../@types/costumer';
 import {useCostumerContext} from '../../hooks/use-costumer.ts';
 import { Input } from '../input';
 
-export function CreateCostumerForm() {
+interface CreateCostumerFormProps {
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export function CreateCostumerForm({setIsOpen}: CreateCostumerFormProps ) {
   const [newCostumer, setNewCostumer] = useState<Costumer.Create>({
     name: "",
     salary: "",
@@ -16,6 +20,8 @@ export function CreateCostumerForm() {
     event.preventDefault();
     
     handleSubmitCostumer(newCostumer);
+    
+    setIsOpen(false)
   }
   
   function handleChangeCostumerInformation(event: ChangeEvent<HTMLInputElement>) {
