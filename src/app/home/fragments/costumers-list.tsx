@@ -1,4 +1,8 @@
 import {PencilIcon, PlusIcon, Trash2} from 'lucide-react';
+import {useState} from 'react';
+import {Costumer} from '../../../@types/costumer';
+import {UpdateCostumerForm} from '../../../components/forms/update-costumer-form.tsx';
+import {ModalCostumers} from '../../../components/modal/create-costumer-modal.tsx';
 import {costumersList} from '../index.tsx';
 
 
@@ -7,6 +11,14 @@ interface CostumersListProps {
 }
 
 export function CostumersList({costumers}: CostumersListProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [updateCostumer, setNewUpdateCostumer] = useState<Costumer.Update>()
+  
+  function handleInviteCostumerEdit(costumer: Costumer.Update) {
+    setIsOpen(!isOpen);
+    setNewUpdateCostumer(costumer)
+  }
+  
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
       {costumers.map((item) => (
@@ -18,15 +30,17 @@ export function CostumersList({costumers}: CostumersListProps) {
             <p>
               <strong>{item.name}</strong>
             </p>
-            <p>{item.salário}</p>
-            <p>{item.Empresa}</p>
+            <p>{item.salary}</p>
+            <p>{item.company}</p>
           </div>
           <div className="flex items-center justify-between mt-4">
             <button>
               <PlusIcon/>
             </button>
             <button>
-              <PencilIcon/>
+              <PencilIcon
+                onClick={() => handleInviteCostumerEdit(item)}
+              />
             </button>
             <button>
               <Trash2 className="text-red" />
@@ -34,7 +48,16 @@ export function CostumersList({costumers}: CostumersListProps) {
           </div>
         </li>
       ))}
- 
+      {isOpen && (
+        <ModalCostumers
+          title="Editar cliente:"
+          setIsOpen={setIsOpen}>
+          <UpdateCostumerForm
+            setIsOpen={setIsOpen}
+            updateCostumer={updateCostumer!}
+          />
+        </ModalCostumers>
+      )}
     </ul>
   )
 }
