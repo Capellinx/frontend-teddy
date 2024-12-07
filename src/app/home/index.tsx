@@ -69,7 +69,7 @@ export function HomePage() {
           setIsOpen={setIsOpen}
           title="Cadastrar cliente:"
         >
-          <CreateCostumerForm/>
+          <CreateCostumerForm />
         </ModalCostumers>
       )}
     </main>
