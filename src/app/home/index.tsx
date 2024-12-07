@@ -10,26 +10,26 @@ export const costumersList = [
   {
     id: 1,
     name: 'Lucas Capella',
-    salário: 'R$ 7.500,00',
-    Empresa: 'Loonic',
+    salary: 'R$ 7.500,00',
+    company: 'Loonic',
   },
   {
     id: 2,
     name: 'Gabriel Capella',
-    salário: 'R$ 7.500,00',
-    Empresa: 'IQVIA',
+    salary: 'R$ 7.500,00',
+    company: 'IQVIA',
   },
   {
     id: 3,
     name: 'Maria Capella',
-    salário: 'R$ 7.500,00',
-    Empresa: 'Ifood',
+    salary: 'R$ 7.500,00',
+    company: 'Ifood',
   },
   {
     id: 4,
     name: 'Patricia Capella',
-    salário: 'R$ 7.500,00',
-    Empresa: 'Prefeitura',
+    salary: 'R$ 7.500,00',
+    company: 'Prefeitura',
   },
 ]
 
@@ -69,7 +69,7 @@ export function HomePage() {
           setIsOpen={setIsOpen}
           title="Cadastrar cliente:"
         >
-          <CreateCostumerForm />
+          <CreateCostumerForm setIsOpen={setIsOpen}/>
         </ModalCostumers>
       )}
     </main>
