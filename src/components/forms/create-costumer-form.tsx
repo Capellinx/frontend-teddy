@@ -1,28 +1,26 @@
 import {ChangeEvent, FormEvent, useState} from 'react';
-import {Input} from '../input';
-
-interface CostumerState {
-  name: string;
-  salary: string;
-  company: string;
-}
+import {Costumer} from '../../@types/costumer';
+import {useCostumerContext} from '../../hooks/use-costumer.ts';
+import { Input } from '../input';
 
 export function CreateCostumerForm() {
-  const [costumer, setCostumer] = useState<CostumerState>({
+  const [newCostumer, setNewCostumer] = useState<Costumer.Create>({
     name: "",
     salary: "",
     company: "",
-  });
+  })
+  
+  const { handleSubmitCostumer} = useCostumerContext()
   
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     
-    console.log(costumer);
+    handleSubmitCostumer(newCostumer);
   }
   
   function handleChangeCostumerInformation(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    setCostumer({ ...costumer, [name]: value });
+    setNewCostumer({ ...newCostumer, [name]: value });
   }
   
   return (
@@ -35,7 +33,7 @@ export function CreateCostumerForm() {
           required
           type="text"
           name="name"
-          value={costumer.name}
+          value={newCostumer.name}
           onChange={handleChangeCostumerInformation}
           placeholder="Digite seu nome:"
         />
@@ -45,7 +43,7 @@ export function CreateCostumerForm() {
           required
           type="text"
           name="salary"
-          value={costumer.salary}
+          value={newCostumer.salary}
           onChange={handleChangeCostumerInformation}
           placeholder="Digite seu salário:"
         />
@@ -55,7 +53,7 @@ export function CreateCostumerForm() {
           required
           type="text"
           name="company"
-          value={costumer.company}
+          value={newCostumer.company}
           onChange={handleChangeCostumerInformation}
           placeholder="Digite o valor da sua empresa:"
         />
