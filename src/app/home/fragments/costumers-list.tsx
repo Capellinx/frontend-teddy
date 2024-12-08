@@ -5,7 +5,7 @@ import {DeleteCostumerForm} from '../../../components/forms/delete-costumer-form
 import {UpdateCostumerForm} from '../../../components/forms/update-costumer-form';
 import {ModalCostumers} from '../../../components/modal/create-costumer-modal.tsx';
 import {formatCurrencyToReal} from '../../../utils/format-currency-to-real.ts';
-import {useSelectCostumer} from '../hooks/use-select-costumer.ts';
+import {useSelectCostumer} from '../../../hooks/use-select-costumer.ts';
 
 interface CostumersListProps {
   costumers: Costumer.List[];

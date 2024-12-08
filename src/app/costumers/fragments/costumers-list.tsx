@@ -1,7 +1,7 @@
 import { ClipboardListIcon, MinusIcon} from 'lucide-react';
 import {Costumer} from '../../../@types/costumer';
 import {formatCurrencyToReal} from '../../../utils/format-currency-to-real.ts';
-import {useSelectCostumer} from '../../home/hooks/use-select-costumer.ts';
+import {useSelectCostumer} from '../../../hooks/use-select-costumer.ts';
 
 interface SelectCostumerListProps{
   costumers: Costumer.List[];
