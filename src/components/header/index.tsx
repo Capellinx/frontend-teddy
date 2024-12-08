@@ -45,7 +45,7 @@ export function Header() {
           </li>
         </ul>
         <span className="hidden md:block">
-          Olá, <strong>{user}!</strong>
+          Olá, <strong>{user.name}!</strong>
         </span>
       </header>
       
