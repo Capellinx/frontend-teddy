@@ -1,24 +1,29 @@
 import {ClipboardListIcon, PencilIcon, PlusIcon, Trash2} from 'lucide-react';
 import {useState} from 'react';
-import {Costumer} from '../../../@types/costumer';
+import {Costumer  } from '../../../@types/costumer';
 import {DeleteCostumerForm} from '../../../components/forms/delete-costumer-form';
 import {UpdateCostumerForm} from '../../../components/forms/update-costumer-form';
 import {ModalCostumers} from '../../../components/modal/create-costumer-modal.tsx';
 import {formatCurrencyToReal} from '../../../utils/format-currency-to-real.ts';
 import {useSelectCostumer} from '../../../hooks/use-select-costumer.ts';
+import { Pagination } from '../../../components/pagination';
 
 interface CostumersListProps {
-  costumers: Costumer.List[];
+  costumers: Costumer.List[]
+  meta?: Costumer.Meta
+  currentPage?: number
+  goToPreviousPage?: () => void
+  goToNextPage?: () => void
 }
 
-export function CostumersList({costumers}: CostumersListProps) {
+export function CostumersList({costumers, meta, currentPage, goToPreviousPage, goToNextPage}: CostumersListProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
-  
-  const {handleSelect} = useSelectCostumer()
-  
+
   const [updateCostumer, setNewUpdateCostumer] = useState<Costumer.List>()
   const [deleteCostumer, setDeleteCostumer] = useState<Costumer.List>()
+  
+  const {handleSelect} = useSelectCostumer()
   
   function handleUpdateCostumer(costumer: Costumer.List) {
     setIsOpen(!isOpen);
@@ -39,7 +44,7 @@ export function CostumersList({costumers}: CostumersListProps) {
   
   return (
     <>
-      {costumers.length === 0 ? (
+      {costumers?.length === 0 ? (
         <div
           className="w-full h-96 mt-5 border-2 border-gray rounded-md flex flex-col items-center justify-center gap-3">
           <ClipboardListIcon size={60}/>
@@ -47,23 +52,23 @@ export function CostumersList({costumers}: CostumersListProps) {
         </div>
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {costumers.map((costumer: Costumer.List) => (
+          {costumers?.map((costumer: any) => (
             <li
-              key={costumer.id}
+              key={costumer?.id}
               className="bg-[#ffff] text-center p-6 rounded-md mt-2.5 font-inter"
             >
               <div className="flex flex-col gap-2.5 text-[16px]">
                 <p>
-                  <strong>{costumer.name}</strong>
+                  <strong>{costumer?.name}</strong>
                 </p>
-                <p>Salário: {formatCurrencyToReal(costumer.salary / 100)}</p>
-                <p>Empresa: {formatCurrencyToReal(costumer.company / 100)}</p>
+                <p>Salário: {formatCurrencyToReal(costumer?.salary / 100)}</p>
+                <p>Empresa: {formatCurrencyToReal(costumer?.company / 100)}</p>
               </div>
-              <div className="flex costumers-center justify-between mt-4">
+              <div className="flex items-center justify-between mt-4">
                 <button>
                   <PlusIcon
                     onClick={() => handleChangeSelectStatus({
-                      id: costumer.id!,
+                      id: costumer?.id!,
                       status: true
                     })}
                   />
@@ -103,6 +108,15 @@ export function CostumersList({costumers}: CostumersListProps) {
             </ModalCostumers>
           )}
         </ul>
+      )}
+      
+      {costumers?.length > 0 && (
+        <Pagination
+          currentPage={currentPage!}
+          totalPages={meta?.totalPages!}
+          goToPreviousPage={goToPreviousPage!}
+          goToNextPage={goToNextPage!}
+        />
       )}
     </>
   )
