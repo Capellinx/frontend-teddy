@@ -1,3 +1,4 @@
+import {number} from 'zod';
 
 
 export namespace Costumer {
@@ -23,6 +24,14 @@ export namespace Costumer {
     is_selected: boolean,
     created_at?: Date,
     updated_at?: Date,
+  }
+  
+  export type Meta = {
+    totalItems: number;
+    itemCount: number;
+    itemsPerpage: number;
+    totalPages: number;
+    currentPage: number;
   }
 }
 
