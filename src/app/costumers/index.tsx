@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {Header} from '../../components/header';
 import {useGetCostumer} from '../home/hooks/use-get-costumer.ts';
 import {SelectCostumerList} from './fragments/costumers-list.tsx';
@@ -5,7 +6,12 @@ import {useClearAllCostumers} from './hooks/use-clear-all-costumers.ts';
 
 
 export function CostumersPage() {
-  const { costumers } = useGetCostumer()
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  
+  const { costumers } = useGetCostumer({
+    page: currentPage,
+    limit: 12,
+  })
   
   const { handleClearAllSelect } = useClearAllCostumers()
   
@@ -18,7 +24,9 @@ export function CostumersPage() {
             <strong>Clientes selecionados:</strong>
           </h1>
         </header>
-        <SelectCostumerList costumers={costumers} />
+        <SelectCostumerList
+          costumers={costumers.items}
+        />
         <button
           onClick={handleClearAllSelect}
           className="bg-transparent w-full border-2 text-orange-500 border-orange-500 rounded-md mt-5 p-2 hover:bg-orange-700 hover:border-orange-700 hover:text-white transform transition duration-300">
