@@ -1,11 +1,14 @@
 import {useState} from 'react';
 import {AlignJustify, ArrowLeft, Grid2x2, House, UserRound} from 'lucide-react';
+import {useNavigate} from 'react-router-dom';
 import {useAuthContext} from '../../hooks/use-auth.ts';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const {user, handleUserLogout} = useAuthContext()
+  
+  const navigate = useNavigate();
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -30,10 +33,17 @@ export function Header() {
         </div>
         <ul className="hidden items-center gap-6 md:flex">
           <li>
-            <a href="#">Clientes</a>
+            <p
+              onClick={() => navigate("/home")}
+              className="cursor-pointer hover:text-orange-500 hover:underline transform transition duration-100"
+              >Clientes</p>
           </li>
           <li>
-            <a href="#">Clientes Selecionados</a>
+            <p
+              onClick={() => navigate("/costumers")}
+              className="cursor-pointer hover:text-orange-500 hover:underline transform transition duration-100"
+            >
+              Clientes Selecionados</p>
           </li>
           <li>
             <p
