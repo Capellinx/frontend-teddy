@@ -4,11 +4,11 @@ import {formatCurrencyToReal} from '../../../utils/format-currency-to-real.ts';
 import {useSelectCostumer} from '../../../hooks/use-select-costumer.ts';
 
 interface SelectCostumerListProps{
-  costumers: Costumer.List[];
+  costumers: Costumer.List[]
 }
 
 export function SelectCostumerList({costumers}: SelectCostumerListProps) {
-  const newListCostumer = costumers.filter(costumer => costumer.is_selected)
+  const newListCostumer = costumers?.filter(costumer => costumer.is_selected)
   
   
   const {handleSelect} = useSelectCostumer()
@@ -31,21 +31,21 @@ export function SelectCostumerList({costumers}: SelectCostumerListProps) {
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {newListCostumer.map((costumer: Costumer.List) => (
             <li
-              key={costumer.id}
+              key={costumer?.id}
               className="bg-[#ffff] text-center p-6 rounded-md mt-2.5 font-inter"
             >
               <div className="flex flex-col gap-2.5 text-[16px]">
                 <p>
-                  <strong>{costumer.name}</strong>
+                  <strong>{costumer?.name}</strong>
                 </p>
-                <p>Salário: {formatCurrencyToReal(costumer.salary / 100)}</p>
-                <p>Empresa: {formatCurrencyToReal(costumer.company / 100)}</p>
+                <p>Salário: {formatCurrencyToReal(costumer?.salary / 100)}</p>
+                <p>Empresa: {formatCurrencyToReal(costumer?.company / 100)}</p>
               </div>
               <div className="flex costumers-center justify-end mt-4">
                 <button>
                   <MinusIcon
                     onClick={() => handleChangeSelectStatus({
-                      id: costumer.id!,
+                      id: costumer?.id!,
                       status: false
                     })}
                     className="text-orange-500 hover:text-orange-500"
