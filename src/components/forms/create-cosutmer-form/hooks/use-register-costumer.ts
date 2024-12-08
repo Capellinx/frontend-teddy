@@ -1,4 +1,4 @@
-import {useMutation} from '@tanstack/react-query';
+import {useMutation, useQueryClient} from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import {Costumer} from '../../../../@types/costumer';
 import {api} from '../../../../service/api.ts';
@@ -6,11 +6,18 @@ import {api} from '../../../../service/api.ts';
 
 export const useRegisterCostumer = () => {
   
+  const queryClient = useQueryClient()
+  
   const mutate = useMutation({
     mutationKey: ['register'],
     mutationFn: async ({name, salary, company}: Costumer.Create) => {
       await handleRegisterCostumer({name, salary, company})
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['costumer'],
+      })
+    }
   })
   
   const handleRegisterCostumer = async ({name, salary, company}: Costumer.Create) => {
