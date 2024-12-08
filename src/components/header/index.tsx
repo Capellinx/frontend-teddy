@@ -10,13 +10,29 @@ export function Header() {
   
   const navigate = useNavigate();
   
-  const toggleMenu = () => {
+  function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   };
   
-  const closeMenu = () => {
+  function closeMenu() {
     setIsMenuOpen(false);
   };
+  
+  function handleMoveToHomePage() {
+    navigate('/home');
+    setIsMenuOpen(false);
+  }
+  
+  function handleMoveToCostumerPage() {
+    navigate('/costumers');
+    setIsMenuOpen(false);
+  }
+  
+  function handleMoveToProductPage() {
+    navigate('/products');
+    setIsMenuOpen(false);
+  }
+  
   
   return (
     <>
@@ -34,13 +50,13 @@ export function Header() {
         <ul className="hidden items-center gap-6 md:flex">
           <li>
             <p
-              onClick={() => navigate("/home")}
+              onClick={() => navigate('/home')}
               className="cursor-pointer hover:text-orange-500 hover:underline transform transition duration-100"
-              >Clientes</p>
+            >Clientes</p>
           </li>
           <li>
             <p
-              onClick={() => navigate("/costumers")}
+              onClick={() => navigate('/costumers')}
               className="cursor-pointer hover:text-orange-500 hover:underline transform transition duration-100"
             >
               Clientes Selecionados</p>
@@ -81,15 +97,28 @@ export function Header() {
           <ul className="space-y-6 pt-10">
             <li className="flex items-center gap-4 text-lg">
               <House/>
-              <a href="#">Home</a>
+              <p
+                onClick={handleMoveToHomePage}
+                className="cursor-pointer"
+              >
+                Home
+              </p>
             </li>
             <li className="flex items-center gap-4 text-lg">
               <UserRound/>
-              <a href="#">Clientes</a>
+              <p
+                onClick={handleMoveToCostumerPage}
+                className="cursor-pointer"
+              >
+                Clientes
+              </p>
             </li>
             <li className="flex items-center gap-4 text-lg">
               <Grid2x2/>
-              <a href="#">Produtos</a>
+              <p
+              onClick={handleMoveToProductPage}
+              className="cursor-pointer"
+              >Produtos</p>
             </li>
           </ul>
         </div>
