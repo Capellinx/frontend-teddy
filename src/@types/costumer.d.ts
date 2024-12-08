@@ -16,13 +16,13 @@ export namespace Costumer {
   }
   
   export type List = {
-    id: string,
+    id?: string,
     name: string,
     salary: number,
     company: number,
     is_selected: boolean,
-    created_at: Date,
-    updated_at: Date,
+    created_at?: Date,
+    updated_at?: Date,
   }
 }
 
