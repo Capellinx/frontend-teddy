@@ -3,7 +3,7 @@ import {NotFound} from '../app/404';
 import {CostumersPage} from '../app/costumers';
 import {HomePage} from '../app/home';
 import {LoginPage} from '../app/login';
-import ConstructionPage from '../app/page-building';
+import {ConstructionPage} from '../app/page-building';
 import {RegisterPage} from '../app/register';
 import {AuthControllerAccess} from '../utils/auth-control-access.tsx';
 
