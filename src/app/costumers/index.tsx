@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {Header} from '../../components/header';
 import {useGetCostumer} from '../home/hooks/use-get-costumer.ts';
 import {SelectCostumerList} from './fragments/costumers-list.tsx';
@@ -6,10 +5,8 @@ import {useClearAllCostumers} from './hooks/use-clear-all-costumers.ts';
 
 
 export function CostumersPage() {
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  
   const { costumers } = useGetCostumer({
-    page: currentPage,
+    page: 1,
     limit: 12,
   })
   
