@@ -12,13 +12,17 @@ export const CostumerContext = createContext({} as CostumerContextProps);
 export function CostumerProvider({children}: { children: ReactNode }) {
   const [costumer, setCostumer] = useState<Costumer.Create>({
     name: '',
-    salary: '',
-    company: '',
+    salary: 0,
+    company: 0,
   });
   
   
   function handleSubmitCostumer({ name, salary, company }: Costumer.Create) {
-    console.log({name, salary, company});
+    setCostumer({
+      name,
+      salary,
+      company,
+    })
   }
   
   return (
