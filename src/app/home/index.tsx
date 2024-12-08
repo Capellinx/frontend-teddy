@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {CreateCostumerForm} from '../../components/forms/create-costumer-form.tsx';
+import {CreateCostumerForm} from '../../components/forms/create-cosutmer-form';
 import {Header} from '../../components/header';
 import {
   ModalCostumers,
