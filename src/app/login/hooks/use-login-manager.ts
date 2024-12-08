@@ -2,19 +2,16 @@ import {useMutation} from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import {z} from 'zod';
 import {useAuthContext} from '../../../hooks/use-auth.ts';
-// import {useNavigate} from 'react-router-dom';
 import {api} from '../../../service/api.ts';
 import {schemaLoginManager} from '../schema/schema-login-manager.ts';
 
 
 export const useLoginManager = () => {
-  // const navigate = useNavigate();
   const {saveInformationToLocalStorage} = useAuthContext()
   
   const mutate = useMutation({
     mutationKey: ['login'],
     onSuccess: () => {
-      // navigate("/")
     },
     mutationFn: async ({username, password}: z.infer<typeof schemaLoginManager>) => {
       await handleLoginManager({username, password})
