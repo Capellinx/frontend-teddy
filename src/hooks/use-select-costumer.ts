@@ -1,6 +1,6 @@
 import {useMutation, useQueryClient} from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import {api} from '../../../service/api.ts';
+import {api} from '../service/api.ts';
 
 
 export const useSelectCostumer = () => {
