@@ -1,10 +1,11 @@
-import { ClipboardListIcon, PencilIcon, PlusIcon, Trash2} from 'lucide-react';
+import {ClipboardListIcon, PencilIcon, PlusIcon, Trash2} from 'lucide-react';
 import {useState} from 'react';
 import {Costumer} from '../../../@types/costumer';
 import {DeleteCostumerForm} from '../../../components/forms/delete-costumer-form';
 import {UpdateCostumerForm} from '../../../components/forms/update-costumer-form';
 import {ModalCostumers} from '../../../components/modal/create-costumer-modal.tsx';
 import {formatCurrencyToReal} from '../../../utils/format-currency-to-real.ts';
+import {useSelectCostumer} from '../hooks/use-select-costumer.ts';
 
 interface CostumersListProps {
   costumers: Costumer.List[];
@@ -13,6 +14,8 @@ interface CostumersListProps {
 export function CostumersList({costumers}: CostumersListProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
+  
+  const {handleSelect} = useSelectCostumer()
   
   const [updateCostumer, setNewUpdateCostumer] = useState<Costumer.List>()
   const [deleteCostumer, setDeleteCostumer] = useState<Costumer.List>()
@@ -27,10 +30,18 @@ export function CostumersList({costumers}: CostumersListProps) {
     setIsOpenDelete(!isOpenDelete)
   }
   
+  function handleChangeSelectStatus({id, status}: { id: string, status: boolean }) {
+    handleSelect({
+      id,
+      status,
+    })
+  }
+  
   return (
     <>
       {costumers.length === 0 ? (
-        <div className="w-full h-96 mt-5 border-2 border-gray rounded-md flex flex-col items-center justify-center gap-3">
+        <div
+          className="w-full h-96 mt-5 border-2 border-gray rounded-md flex flex-col items-center justify-center gap-3">
           <ClipboardListIcon size={60}/>
           <p>Nenhum cliente encontrado</p>
         </div>
@@ -45,12 +56,17 @@ export function CostumersList({costumers}: CostumersListProps) {
                 <p>
                   <strong>{costumer.name}</strong>
                 </p>
-                <p>{formatCurrencyToReal(costumer.salary / 100)}</p>
-                <p>{formatCurrencyToReal(costumer.company / 100)}</p>
+                <p>Salário: {formatCurrencyToReal(costumer.salary / 100)}</p>
+                <p>Empresa: {formatCurrencyToReal(costumer.company / 100)}</p>
               </div>
               <div className="flex costumers-center justify-between mt-4">
                 <button>
-                  <PlusIcon/>
+                  <PlusIcon
+                    onClick={() => handleChangeSelectStatus({
+                      id: costumer.id!,
+                      status: true
+                    })}
+                  />
                 </button>
                 <button>
                   <PencilIcon
