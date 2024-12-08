@@ -2,9 +2,9 @@ import { ClipboardListIcon, PencilIcon, PlusIcon, Trash2} from 'lucide-react';
 import {useState} from 'react';
 import {Costumer} from '../../../@types/costumer';
 import {DeleteCostumerForm} from '../../../components/forms/delete-costumer-form';
-import {UpdateCostumerForm} from '../../../components/forms/update-costumer-form.tsx';
+import {UpdateCostumerForm} from '../../../components/forms/update-costumer-form';
 import {ModalCostumers} from '../../../components/modal/create-costumer-modal.tsx';
-
+import {formatCurrencyToReal} from '../../../utils/format-currency-to-real.ts';
 
 interface CostumersListProps {
   costumers: Costumer.List[];
@@ -45,8 +45,8 @@ export function CostumersList({costumers}: CostumersListProps) {
                 <p>
                   <strong>{costumer.name}</strong>
                 </p>
-                <p>{costumer.salary}</p>
-                <p>{costumer.company}</p>
+                <p>{formatCurrencyToReal(costumer.salary / 100)}</p>
+                <p>{formatCurrencyToReal(costumer.company / 100)}</p>
               </div>
               <div className="flex costumers-center justify-between mt-4">
                 <button>
