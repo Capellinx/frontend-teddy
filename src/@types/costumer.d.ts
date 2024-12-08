@@ -9,10 +9,10 @@ export namespace Costumer {
   }
   
   export type Update = {
-    id?: number
+    id?: string
     name?: string;
-    salary?: string;
-    company?: string;
+    salary?: number;
+    company?: number;
   }
   
   export type List = {
