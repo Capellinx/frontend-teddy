@@ -8,7 +8,7 @@ interface SelectCostumerListProps{
 }
 
 export function SelectCostumerList({costumers}: SelectCostumerListProps) {
-  const newListCostumer = costumers?.filter(costumer => costumer.is_selected)
+  const newListCostumer = costumers?.filter(costumer => costumer?.is_selected)
   
   
   const {handleSelect} = useSelectCostumer()
@@ -22,7 +22,7 @@ export function SelectCostumerList({costumers}: SelectCostumerListProps) {
   
   return (
     <>
-      {newListCostumer.length === 0 ? (
+      {newListCostumer?.length === 0 ? (
         <div className="w-full h-96 mt-5 border-2 border-gray rounded-md flex flex-col items-center justify-center gap-3">
           <ClipboardListIcon size={60}/>
           <p>Nenhum cliente selecionado</p>
