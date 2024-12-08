@@ -1,24 +1,30 @@
-import {Dispatch, FormEvent, SetStateAction} from 'react';
-import {Costumer} from '../../@types/costumer';
+import {Dispatch, SetStateAction} from 'react';
+import {useForm} from 'react-hook-form';
+import {Costumer} from '../../../@types/costumer';
+import {useDeleteCostumer} from './hooks/use-delete-costumer.ts';
 
 
 interface CreateCostumerFormProps {
   setIsOpenDelete: Dispatch<SetStateAction<boolean>>;
-  costumer: Costumer.Create;
+  costumer: Costumer.List;
 }
 
 export function DeleteCostumerForm({setIsOpenDelete, costumer}: CreateCostumerFormProps ) {
+  const { handleSubmit } = useForm()
+  const { handleDelete } = useDeleteCostumer()
   
-  function handleSubmit(event: FormEvent){
-    event.preventDefault();
+  function onSubmit(){
     setIsOpenDelete(false);
-    console.log(`excluiu o usuário ${costumer.name} com sucesso`);
+  
+    handleDelete({
+      id: costumer.id as string,
+    })
   }
   
   return (
     <form
       className="flex flex-col w-full gap-6"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <p className="w-full">Você está prestes a excluir o cliente: <strong>{costumer.name}</strong></p>
       <button
