@@ -1,50 +1,55 @@
-# React + TypeScript + Vite
+# Teste Teddy Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositório contém a implementação do frontend do teste da Teddy Open Finance.
 
-Currently, two official plugins are available:
+## Pré-requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Antes de começar, você precisará ter o seguinte instalado em sua máquina:
 
-## Expanding the ESLint configuration
+- [Node.js](https://nodejs.org/) (versão 18 ou superior)
+- [pnpm](https://pnpm.io/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Configuração do Ambiente
 
-- Configure the top-level `parserOptions` property like this:
+### 1. Clonando o Repositório
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Clone este repositório em sua máquina local usando o seguinte comando:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+```bash
+git clone https://github.com/Capellinx/frontend-teddy
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+cd frontend-teddy
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+code . || webstorm .
+````
+
+### 2. Configuração das Variáveis de Ambiente
+Crie um arquivo .env na raiz do seu projeto com as seguintes variáveis de ambiente:
+
+```bash
+VITE_API_URL="http://localhost:porta" #URL do seu backend
+````
+
+### 3. Instalando Dependências
+Instale as dependências do projeto usando npm:
+```bash
+pnpm install
+````
+
+### 4. Rodando a Aplicação
+Para iniciar a aplicação em modo de desenvolvimento, execute:
+```bash
+pnpm run dev
+````
+
+A aplicação estará disponível em http://localhost:5173.
+
+### 5. Acessando a Aplicação
+Após iniciar o frontend, você pode acessar a aplicação em http://localhost:5173. A aplicação se conectará automaticamente ao backend que está rodando em http://localhost:porta.
+
+### Contato
+Se você tiver alguma dúvida ou sugestão, entre em contato comigo:
+
+- Nome: Lucas Capella
+- Email: capellaaa7@gmail.com
+- LinkedIn: [Lucas Capella](https://www.linkedin.com/in/lucas-capella-dev/)
