@@ -4,8 +4,8 @@ export namespace Costumer {
   export type Create = {
     id?: number
     name: string;
-    salary: string;
-    company: string;
+    salary: number;
+    company: number;
   }
   
   export type Update = {
