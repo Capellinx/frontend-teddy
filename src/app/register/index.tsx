@@ -7,6 +7,8 @@ import { Eye, EyeOff } from 'lucide-react';
 import {registerManagerSchema, TRegisterManager} from './schema/register-manager.schema.ts';
 
 export function RegisterPage() {
+  const [showPassword, setShowPassword] = useState(false);
+  
   const { register, handleSubmit, formState: { errors, isValid } } = useForm<TRegisterManager>({
     defaultValues: {
       name: '',
@@ -19,7 +21,6 @@ export function RegisterPage() {
   const { handleRegister } = useRegisterManager();
   const navigate = useNavigate();
   
-  const [showPassword, setShowPassword] = useState(false);
   
   function onSubmit(manager: TRegisterManager) {
     handleRegister({
