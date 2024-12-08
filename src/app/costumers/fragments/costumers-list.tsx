@@ -29,7 +29,7 @@ export function SelectCostumerList({costumers}: SelectCostumerListProps) {
         </div>
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {newListCostumer.map((costumer: Costumer.List) => (
+          {newListCostumer?.map((costumer: Costumer.List) => (
             <li
               key={costumer?.id}
               className="bg-[#ffff] text-center p-6 rounded-md mt-2.5 font-inter"
